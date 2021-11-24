@@ -1,0 +1,30 @@
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+.App {
+    width: 100%;
+    margin: 0 auto;
+    padding: 10px 10%;
+    font-size: 20px;
+}
+.title {
+    width: 100%;
+    text-align: center;
+}
+
+.post-enter {
+    transform: translateX(-100%);
+}
+.post-enter-active {
+    transform: translateX(0);
+    transition: transform 500ms ease-in;
+}
+.post-exit {
+    transform: translateX(0);
+}
+.post-exit-active {
+    transform: translateX(100%);
+    transition: transform 500ms ease-in;
+}

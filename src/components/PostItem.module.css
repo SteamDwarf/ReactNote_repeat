@@ -1,0 +1,19 @@
+.post {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    width: 100%;
+    padding: 20px;
+    border: 2px solid #1174C9;
+    margin-bottom: 10px;
+}
+.information {
+    width: 85%;
+}
+.btnsBlock {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    height: 100px;
+
+}

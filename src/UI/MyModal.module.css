@@ -1,0 +1,26 @@
+.modal {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    position: fixed;
+    top: 0;
+    bottom: 0;
+    right: 0;
+    left: 0;
+    background-color: rgba(0, 0, 0, 0.5);
+}
+.modalContent {
+    position: relative;
+    width: 45%;
+    height: 220px;
+}
+.closeBtn {
+    position: absolute;
+    top: -12%;
+    right: -5%;
+    z-index: 1;
+    color: white;
+    font-size: 40px;
+    font-weight: bold;
+    cursor: pointer;
+}

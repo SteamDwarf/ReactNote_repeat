@@ -4,10 +4,10 @@ import PostVieweController from "../components/PostVieweController";
 import PostList from "../components/PostList";
 import MyModal from "../UI/MyModal";
 import { usePosts } from "../hooks/usePosts";
-import { getAllPosts } from "../API/PostService";
+import { deletePostById, getAllPosts, postNewPost } from "../API/PostService";
 import { useFetching } from "../hooks/useFetching";
 import Pangination from "../components/Pangination";
-import '../style';
+import '../style.css'
 
 function Posts() {
   const [posts, setPosts] = useState([]);
@@ -23,7 +23,14 @@ function Posts() {
     const response = await getAllPosts();
     setPosts(response.data);
   });
-
+  const [uploadPost, postIsUploading, uploadError] = useFetching(async (post) => {
+    const response = await postNewPost(post);
+    setPosts([...posts, post]);
+  });
+  const [deletePost, postIsDeleting, deletingError] = useFetching(async (id) => {
+    const response = await deletePostById(id);
+    setPosts(posts.filter(post => post.id !== id));
+  });
 
   useEffect(fetchPosts, []);
 
@@ -31,12 +38,9 @@ function Posts() {
     setpostsLimit(limit);
     setPage(1);
   }
-  function addPost(post) {
-    setPosts([...posts, post]);
-  }
-  function removePost(delPost) {
+/*   function removePost(delPost) {
     setPosts(posts.filter(post => post.id !== delPost.id));
-  }
+  } */
   function changeSortOption(option) {
     setCurSortOption(option);
   }
@@ -49,9 +53,9 @@ function Posts() {
 
 
   return (
-    <div className="App">
+    <div className='App'>
       <MyModal isShown={isShownModal} toggleModal={toggleModal}>
-        <PostForm addPost={addPost} closeModal={toggleModal}/>
+        <PostForm addPost={uploadPost} closeModal={toggleModal}/>
       </MyModal>
       
       <PostVieweController 
@@ -71,7 +75,7 @@ function Posts() {
       <PostList 
         title='Посты о языках программирования' 
         posts={searchedAndSortedPosts[page - 1] || []}
-        removePost={removePost}
+        removePost={deletePost}
         isLoading={postsIsLoading}
         error={error}
       />

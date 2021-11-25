@@ -13,6 +13,14 @@
     width: 100%;
     text-align: center;
 }
+.login-form {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    width: 50%;
+    height: 200px;
+    margin-top: 50px;
+}
 
 .post-enter {
     transform: translateX(-100%);

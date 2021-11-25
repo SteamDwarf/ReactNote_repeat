@@ -1,0 +1,9 @@
+.header {
+    display: flex;
+    justify-content: space-between;
+}
+.userBlock {
+    display: flex;
+    justify-content: space-between;
+    width: 250px;
+}

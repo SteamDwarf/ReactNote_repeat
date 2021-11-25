@@ -1,6 +1,7 @@
 import React, {useState} from 'react'
 import MyButton from '../UI/MyButton'
 import MyInput from '../UI/MyInput'
+import MyTextArea from '../UI/MyTextarea';
 import classes from './PostForm.module.css'
 
 function PostForm({addPost, closeModal}) {
@@ -22,7 +23,7 @@ function PostForm({addPost, closeModal}) {
                 onChange={(e) => setPost({...post, title: e.target.value})} 
                 placeholder='Заголовок поста'
             />
-            <MyInput 
+            <MyTextArea 
                 value={post.body}
                 onChange={(e) => setPost({...post, body: e.target.value})}
                 placeholder='Описание поста'

@@ -2,20 +2,22 @@ import { useEffect, useState } from "react";
 import PostForm from "../components/PostForm";
 import PostVieweController from "../components/PostVieweController";
 import PostList from "../components/PostList";
-import MyModal from "../UI/MyModal";
+import MyModal from "../components/MyModal";
 import { usePosts } from "../hooks/usePosts";
 import { deletePostById, getAllPosts, postNewPost } from "../API/PostService";
 import { useFetching } from "../hooks/useFetching";
 import Pangination from "../components/Pangination";
 import '../style.css'
+import { useContext } from "react/cjs/react.development";
+import { PostsConfContext } from "../context/PostsConfContext";
 
 function Posts() {
+  const {curSortOption, setCurSortOption} = useContext(PostsConfContext);
+  const {postsLimit, setpostsLimit} = useContext(PostsConfContext);
   const [posts, setPosts] = useState([]);
-  const [curSortOption, setCurSortOption] = useState('title');
   const [searchQuerry, setSearchQuerry] = useState('');
   const [isShownModal, setIsShownModal] = useState(false);
   const [pagesCount, setPagesCount] = useState(0);
-  const [postsLimit, setpostsLimit] = useState('10');
   const [page, setPage] = useState(1);
   const searchedAndSortedPosts = usePosts(posts, curSortOption, searchQuerry, postsLimit);
 
@@ -23,13 +25,13 @@ function Posts() {
     const response = await getAllPosts();
     setPosts(response.data);
   });
-  const [uploadPost, postIsUploading, uploadError] = useFetching(async (post) => {
+  const [uploadPost, postIsUploading, uploadError, setUploadError] = useFetching(async (post) => {
     const response = await postNewPost(post);
     setPosts([...posts, post]);
-  });
-  const [deletePost, postIsDeleting, deletingError] = useFetching(async (id) => {
-    const response = await deletePostById(id);
-    setPosts(posts.filter(post => post.id !== id));
+
+    if(!uploadError) {
+      toggleModal();
+    }
   });
 
   useEffect(fetchPosts, []);
@@ -38,9 +40,7 @@ function Posts() {
     setpostsLimit(limit);
     setPage(1);
   }
-/*   function removePost(delPost) {
-    setPosts(posts.filter(post => post.id !== delPost.id));
-  } */
+
   function changeSortOption(option) {
     setCurSortOption(option);
   }
@@ -49,14 +49,26 @@ function Posts() {
   }
   function toggleModal() {
     setIsShownModal(!isShownModal);
+    setUploadError('');
   }
 
 
   return (
     <div className='App'>
-      <MyModal isShown={isShownModal} toggleModal={toggleModal}>
-        <PostForm addPost={uploadPost} closeModal={toggleModal}/>
-      </MyModal>
+      {
+        isShownModal
+        ?
+          <MyModal 
+            toggleModal={toggleModal}
+            isLoading={postIsUploading}
+            error={uploadError}
+            loadingText='Подождите, пост загружается...' 
+            setError={setUploadError}
+          >
+            <PostForm addPost={uploadPost} />
+          </MyModal>
+        : null
+      }
       
       <PostVieweController 
         curSortOption={curSortOption} 
@@ -73,9 +85,8 @@ function Posts() {
         changeLimit={changePostsLimit}
       />
       <PostList 
-        title='Посты о языках программирования' 
+        title='Посты' 
         posts={searchedAndSortedPosts[page - 1] || []}
-        removePost={deletePost}
         isLoading={postsIsLoading}
         error={error}
       />

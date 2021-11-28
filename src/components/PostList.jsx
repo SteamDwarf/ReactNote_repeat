@@ -14,12 +14,12 @@ function PostList({title, posts, removePost, isLoading, error}) {
         return <Loader text={'Посты загружаются. Ожидайте...'}/>
     }
 
-    if(!posts.length) {
+    if(!posts?.length) {
         return <h1 className='title'>Посты не найдены!</h1>;
     }
 
     return (
-        <div>
+        <div className={classes.postList}>
             <h1 className={classes.title}>{title}</h1>
 
             <TransitionGroup>

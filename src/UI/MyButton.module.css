@@ -1,14 +1,12 @@
 .btn {
+    max-width: 300px;
     max-height: 50px;
     padding: 10px 15px;
-    border: 2px solid #1174C9;
     border-radius: 4px;
     background-color: #fff;
     font-size: 18px;
-    color: #1174C9;
     transition: background-color 0.3s, color 0.3s;
 }
 .btn:hover {
     color: #fff;
-    background-color: #1174C9;
 }

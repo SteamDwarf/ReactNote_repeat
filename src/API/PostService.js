@@ -10,7 +10,7 @@ export async function getAllPosts(limit = -1, page = 1) {
     return response;
 }
 export async function postNewPost(post) {
-    const response = await axios.post('http://localhost:5000/posts', post);
+    const response = await axios.post('http://localhost:50001/posts', post);
     return response;
 }
 export async function getPostDetailsById(id) {
@@ -20,5 +20,9 @@ export async function getPostDetailsById(id) {
 }
 export async function deletePostById(id) {
     const response = await axios.delete(`http://localhost:5000/posts/${id}`);
+    return response;
+}
+export async function getUserPosts(userId) {
+    const response = await axios.get(`http://localhost:5000/posts?userId=${userId}`);
     return response;
 }

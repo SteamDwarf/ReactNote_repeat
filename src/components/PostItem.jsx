@@ -12,9 +12,14 @@ function PostItem({index, post, removePost}) {
             </div>
             <div className={classes.btnsBlock}>
                 <Link to={`/posts/${post.id}`}>
-                    <MyButton >Открыть</MyButton>
+                    <MyButton color='blue'>Открыть</MyButton>
                 </Link>
-                <MyButton onClick={() => removePost(post.id)}>Удалить</MyButton>
+                {
+                    removePost
+                    ?<MyButton color='blue' onClick={() => removePost(post.id)}>Удалить</MyButton>
+                    :null
+                }
+                
             </div>
         </div>
     );

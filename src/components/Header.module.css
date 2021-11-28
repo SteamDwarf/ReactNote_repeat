@@ -5,5 +5,5 @@
 .userBlock {
     display: flex;
     justify-content: space-between;
-    width: 250px;
+    width: 200px;
 }

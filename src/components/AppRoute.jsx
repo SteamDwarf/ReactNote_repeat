@@ -1,11 +1,10 @@
 import React, { useContext } from 'react'
-import { Routes, Route } from 'react-router';
+import { Routes, Route, useNavigate } from 'react-router';
 import { AuthContext } from '../context/AuthContext';
 import Login from '../pages/Login';
 import PostDetails from '../pages/PostDetails';
-import UserInformation from '../pages/UserInformation';
 import Posts from '../pages/Posts';
-import Header from './Header';
+import Profile from '../pages/Profile';
 
 function AppRoute() {
     const {isAuth} = useContext(AuthContext);
@@ -14,13 +13,13 @@ function AppRoute() {
         isAuth
         ?
             <Routes>
-                <Route path='/' element={<Posts />} />
-                <Route path='/posts/:postId' element={<PostDetails />}/>
-                <Route path='/users/:userId' element={<UserInformation />}/>
+                <Route index element={<Posts />} />
+                <Route exact path='/posts/:postId' element={<PostDetails />}/>
+                <Route exact path='/profile' element={<Profile />}/>
             </Routes>
         :
             <Routes>
-                <Route path='/' element={<Login />}/>
+                <Route index element={<Login />}/>
             </Routes>
     )
 }

@@ -6,20 +6,19 @@ import { AuthContext } from "./context/AuthContext";
 import { getUserById } from "./API/UserService";
 import { useFetching } from "./hooks/useFetching";
 import { PostsConfContext } from "./context/PostsConfContext";
+import { setCurrentUserAction, signInAction } from "./redux/AuthReducer";
+import { useDispatch } from "react-redux";
 
 function App() {
-  const [isAuth, setIsAuth] = useState(false);
-  const [currentUser, setCurrentUser] = useState({});
-  const [curSortOption, setCurSortOption] = useState('title');
-  const [postsLimit, setpostsLimit] = useState('10');
+  const dispatch = useDispatch();
   const [fetchUser] = useFetching(async () => {
     const userId = localStorage.getItem('userId');
 
     if(userId.length > 0) {
       const user = await getUserById(userId);
       
-      setCurrentUser(user.data);
-      setIsAuth(true);
+      dispatch(setCurrentUserAction(user.data));
+      dispatch(signInAction());
     }
   });
 
@@ -27,16 +26,14 @@ function App() {
 
   return (
     <AuthContext.Provider value={{
-      isAuth,
-      setIsAuth,
-      currentUser, 
-      setCurrentUser
+      /* currentUser, 
+      setCurrentUser */
     }}>
       <PostsConfContext.Provider value={{
-        curSortOption, 
+        /* curSortOption, 
         setCurSortOption,
         postsLimit, 
-        setpostsLimit
+        setpostsLimit */
       }}>
         <BrowserRouter>
           <Header />

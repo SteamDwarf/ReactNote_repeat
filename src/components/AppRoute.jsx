@@ -1,4 +1,5 @@
 import React, { useContext } from 'react'
+import { useSelector } from 'react-redux';
 import { Routes, Route, useNavigate } from 'react-router';
 import { AuthContext } from '../context/AuthContext';
 import Login from '../pages/Login';
@@ -7,7 +8,7 @@ import Posts from '../pages/Posts';
 import Profile from '../pages/Profile';
 
 function AppRoute() {
-    const {isAuth} = useContext(AuthContext);
+    const isAuth = useSelector(state => state.auth.isAuth);
 
     return (
         isAuth

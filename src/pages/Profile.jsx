@@ -8,10 +8,12 @@ import PostList from '../components/PostList';
 import { deletePostById } from '../API/PostService';
 import { usePosts } from '../hooks/usePosts';
 import { PostsConfContext } from '../context/PostsConfContext';
+import { useSelector } from 'react-redux';
 
 function Profile() {
-    const {currentUser} = useContext(AuthContext);
-    const {curSortOption} = useContext(PostsConfContext);
+    const currentUser = useSelector(state => state.auth.currentUser);
+    const curSortOption = useSelector(state => state.posts.curSortOption);
+
     const [userPosts, setUserPosts] = useState([]);
     const searchedAndSortedPosts = usePosts(userPosts, curSortOption, '', userPosts.length);
     const [fetchUserPosts, isLoading, error] = useFetching(async () => {

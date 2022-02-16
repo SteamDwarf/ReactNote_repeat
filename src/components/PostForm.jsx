@@ -1,4 +1,5 @@
 import React, {useState} from 'react'
+import { useSelector } from 'react-redux';
 import { useContext } from 'react/cjs/react.development';
 import { AuthContext } from '../context/AuthContext';
 import MyButton from '../UI/MyButton'
@@ -7,7 +8,7 @@ import MyTextArea from '../UI/MyTextarea';
 import classes from './PostForm.module.css'
 
 function PostForm({addPost}) {
-    const {currentUser} = useContext(AuthContext);
+    const currentUser = useSelector(state => state.auth.currentUser);
     const [post, setPost] = useState({title: '', body: ''});
 
     function createPost() {

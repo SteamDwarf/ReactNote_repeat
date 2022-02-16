@@ -4,17 +4,22 @@ import MyButton from '../UI/MyButton'
 import classes from './Header.module.css'
 import { AuthContext } from '../context/AuthContext'
 import MyLink from '../UI/MyLink'
+import { useDispatch } from 'react-redux'
+import { useSelector } from 'react-redux'
+import { setCurrentUserAction, signOutAction } from '../redux/AuthReducer'
 
 function Header() {
-    const {isAuth, setIsAuth} = useContext(AuthContext);
-    const {currentUser, setCurrentUser} = useContext(AuthContext);
+    const dispatch = useDispatch();
+    const isAuth = useSelector(state => state.auth.isAuth);
+    const currentUser = useSelector(state => state.auth.currentUser);
     const navigate = useNavigate();
-    
+    console.log(isAuth);
+
     function signOut() {
-        setCurrentUser({});
+        dispatch(setCurrentUserAction({}));
         navigate('/');
         localStorage.removeItem('userId');
-        setIsAuth(false);
+        dispatch(signOutAction());
     }
     return (
         isAuth

@@ -10,7 +10,7 @@ export async function getAllPosts(limit = -1, page = 1) {
     return response;
 }
 export async function postNewPost(post) {
-    const response = await axios.post('http://localhost:50001/posts', post);
+    const response = await axios.post('http://localhost:5000/posts', post);
     return response;
 }
 export async function getPostDetailsById(id) {

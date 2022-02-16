@@ -10,15 +10,21 @@ import Pangination from "../components/Pangination";
 import '../style.css'
 import { useContext } from "react/cjs/react.development";
 import { PostsConfContext } from "../context/PostsConfContext";
+import { useDispatch } from "react-redux";
+import { useSelector } from "react-redux";
+import { setPostsLimitAction, setSearchQuerryAction, setSortOptionAction, turnOverPageAction } from "../redux/PostReducer";
+import { showHideNewPostModalAction } from "../redux/UIReducer";
 
 function Posts() {
-  const {curSortOption, setCurSortOption} = useContext(PostsConfContext);
-  const {postsLimit, setpostsLimit} = useContext(PostsConfContext);
+  const dispatch = useDispatch();
+  const curSortOption = useSelector(state => state.posts.curSortOption);
+  const postsLimit = useSelector(state => state.posts.postsLimit);
+  const page = useSelector(state => state.posts.page);
+  const searchQuerry = useSelector(state => state.posts.searchQuerry); 
+  const isShownModal = useSelector(state => state.ui.newPostModalShown);
+
   const [posts, setPosts] = useState([]);
-  const [searchQuerry, setSearchQuerry] = useState('');
-  const [isShownModal, setIsShownModal] = useState(false);
   const [pagesCount, setPagesCount] = useState(0);
-  const [page, setPage] = useState(1);
   const searchedAndSortedPosts = usePosts(posts, curSortOption, searchQuerry, postsLimit);
 
   const [fetchPosts, postsIsLoading, error] = useFetching(async () => {
@@ -37,18 +43,20 @@ function Posts() {
   useEffect(fetchPosts, []);
 
   function changePostsLimit(limit) {
-    setpostsLimit(limit);
-    setPage(1);
+    dispatch(setPostsLimitAction(limit));
+    turnOverPage(1);
   }
-
+  function turnOverPage(page) {
+    dispatch(turnOverPageAction(page));
+  }
   function changeSortOption(option) {
-    setCurSortOption(option);
+    dispatch(setSortOptionAction(option));
   }
   function changeSearchQuerry(querry) {
-    setSearchQuerry(querry);
+    dispatch(setSearchQuerryAction(querry));
   }
   function toggleModal() {
-    setIsShownModal(!isShownModal);
+    dispatch(showHideNewPostModalAction(!isShownModal));
     setUploadError('');
   }
 
@@ -80,7 +88,7 @@ function Posts() {
       <Pangination 
         pages={searchedAndSortedPosts.length} 
         currentPage={page}
-        changePage={setPage}
+        changePage={turnOverPage}
         currentLimit={postsLimit}
         changeLimit={changePostsLimit}
       />
@@ -93,7 +101,7 @@ function Posts() {
       <Pangination 
         pages={searchedAndSortedPosts.length} 
         currentPage={page}
-        changePage={setPage}
+        changePage={turnOverPage}
         currentLimit={postsLimit}
         changeLimit={changePostsLimit}
       />

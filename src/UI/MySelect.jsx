@@ -1,10 +1,11 @@
 import React from 'react'
-import classes from './MeSelect.module.css'
+import classes from './Select.module.css';
+import '../styles/themes/components/select.scss';
 
 function MySelect({name, options, defaultOption, value, onChange}) {
     return (
         <select
-            className={classes.select} 
+            className={`${classes.select} select light`} 
             name={name} 
             value={value} 
             onChange={(e) => onChange(e.target.value)}

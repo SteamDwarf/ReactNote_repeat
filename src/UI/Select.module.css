@@ -1,8 +1,7 @@
 .select {
-    border: 2px solid #1174C9;
     padding: 5px;
+    border: 2px solid;
     border-radius: 5px;
     font-size: 16px;
-    color: #1174C9;
     outline: none;
 }

@@ -2,11 +2,9 @@
     max-width: 300px;
     max-height: 50px;
     padding: 10px 15px;
+    border: 2px solid;
     border-radius: 4px;
-    background-color: #fff;
     font-size: 18px;
-    transition: background-color 0.3s, color 0.3s;
-}
-.btn:hover {
-    color: #fff;
+    transition: background-color 0.5s, color 0.5s;
+    cursor: pointer;
 }

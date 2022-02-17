@@ -1,0 +1,9 @@
+@import './vars.scss';
+
+.post_item_block.light {
+    border-color: $blue;
+
+    & .comments-block {
+        border-top-color: $blue;
+    }
+}

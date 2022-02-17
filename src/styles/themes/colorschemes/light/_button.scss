@@ -1,0 +1,12 @@
+@import './vars.scss';
+
+.btn.light {
+    background-color: $foreground;
+    border-color: $green;
+    color: $green;
+
+    &:hover {
+        background-color: $green;
+        color: $foreground;
+    }
+}

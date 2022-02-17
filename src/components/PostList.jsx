@@ -2,7 +2,7 @@ import React from "react";
 import { CSSTransition, TransitionGroup } from "react-transition-group";
 import Loader from "../UI/Loader";
 import PostItem from "./PostItem";
-import classes from './PostList.module.css';
+import './PostList.scss';
 import ErrorMessage from "../UI/ErrorMessage";
 import PostVieweController from "./PostVieweController";
 
@@ -19,8 +19,8 @@ function PostList({title, posts, removePost, isLoading, error}) {
     }
 
     return (
-        <div className={classes.postList}>
-            <h1 className={classes.title}>{title}</h1>
+        <div className={`post-list`}>
+            <h1 className={`title`}>{title}</h1>
 
             <TransitionGroup>
                 {posts.map((post, i) =>  

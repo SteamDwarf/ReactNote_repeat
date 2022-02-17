@@ -6,11 +6,14 @@ import { AuthContext } from "./context/AuthContext";
 import { getUserById } from "./API/UserService";
 import { useFetching } from "./hooks/useFetching";
 import { PostsConfContext } from "./context/PostsConfContext";
-import { setCurrentUserAction, signInAction } from "./redux/AuthReducer";
-import { useDispatch } from "react-redux";
+import { setCurrentUserAction, signInAction } from "./redux/reducers/AuthReducer";
+import { useDispatch, useSelector } from "react-redux";
+import './styles/themes/components/app.scss';
+import './App.scss';
 
 function App() {
   const dispatch = useDispatch();
+  const {theme} = useSelector(state => state.ui);
   const [fetchUser] = useFetching(async () => {
     const userId = localStorage.getItem('userId');
 
@@ -25,22 +28,24 @@ function App() {
   useEffect(fetchUser, []);
 
   return (
-    <AuthContext.Provider value={{
-      /* currentUser, 
-      setCurrentUser */
-    }}>
-      <PostsConfContext.Provider value={{
-        /* curSortOption, 
-        setCurSortOption,
-        postsLimit, 
-        setpostsLimit */
+    <div className={`app ${theme}`}>
+      <AuthContext.Provider value={{
+        /* currentUser, 
+        setCurrentUser */
       }}>
-        <BrowserRouter>
-          <Header />
-          <AppRoute />           
-        </BrowserRouter>
-      </PostsConfContext.Provider>
-    </AuthContext.Provider>
+        <PostsConfContext.Provider value={{
+          /* curSortOption, 
+          setCurSortOption,
+          postsLimit, 
+          setpostsLimit */
+        }}>
+          <BrowserRouter>
+            <Header />
+            <AppRoute />           
+          </BrowserRouter>
+        </PostsConfContext.Provider>
+      </AuthContext.Provider>
+    </div>
   );
 }
 

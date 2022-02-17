@@ -1,17 +1,15 @@
-.btn {
+.page-btn {
     display: inline-block;
     width: 25px;
     height: 25px;
-    border: 1px solid #1174C9;
+    border: 1px solid;
     border-radius: 4px;
-    color: #1174C9;
     background-color: transparent;
     text-align: center;
     vertical-align: center;
     cursor: pointer;
-}
-.btn.active {
-    font-weight: bold;
-    border: 2px solid #076D12;
-    color: #076D12;
+
+    &.active {
+        font-weight: bold;
+    }
 }

@@ -2,7 +2,7 @@ import { useEffect, useState } from "react";
 import PostForm from "../components/PostForm";
 import PostVieweController from "../components/PostVieweController";
 import PostList from "../components/PostList";
-import MyModal from "../components/MyModal";
+import Modal from "../components/Modal";
 import { usePosts } from "../hooks/usePosts";
 import { deletePostById, getAllPosts, postNewPost } from "../API/PostService";
 import { useFetching } from "../hooks/useFetching";
@@ -12,8 +12,8 @@ import { useContext } from "react/cjs/react.development";
 import { PostsConfContext } from "../context/PostsConfContext";
 import { useDispatch } from "react-redux";
 import { useSelector } from "react-redux";
-import { setPostsLimitAction, setSearchQuerryAction, setSortOptionAction, turnOverPageAction } from "../redux/PostReducer";
-import { showHideNewPostModalAction } from "../redux/UIReducer";
+import { setPostsLimitAction, setSearchQuerryAction, setSortOptionAction, turnOverPageAction } from "../redux/reducers/PostReducer";
+import { showHideNewPostModalAction } from "../redux/reducers/UIReducer";
 
 function Posts() {
   const dispatch = useDispatch();
@@ -66,7 +66,7 @@ function Posts() {
       {
         isShownModal
         ?
-          <MyModal 
+          <Modal 
             toggleModal={toggleModal}
             isLoading={postIsUploading}
             error={uploadError}
@@ -74,7 +74,7 @@ function Posts() {
             setError={setUploadError}
           >
             <PostForm addPost={uploadPost} />
-          </MyModal>
+          </Modal>
         : null
       }
       

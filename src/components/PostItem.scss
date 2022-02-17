@@ -1,0 +1,21 @@
+.post {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    width: 100%;
+    padding: 20px;
+    border: 2px solid;
+    margin-bottom: 10px;
+    
+    & .information {
+        width: 85%;
+    }
+
+    & .btns-block {
+        display: flex;
+        flex-direction: column;
+        justify-content: space-around;
+        height: 100px;
+    }
+}
+

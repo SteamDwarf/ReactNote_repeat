@@ -1,7 +1,7 @@
 @import './vars.scss';
 
-.select.light {
+.input.dark {
     border-color: $blue;
     background-color: $foreground;
-    color: $blue;
+    color: $mainTextColor;
 }

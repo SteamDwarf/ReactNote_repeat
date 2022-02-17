@@ -1,13 +1,15 @@
 import React from 'react'
 import { Link } from 'react-router-dom'
-import classes from './MyLink.module.css';
+import './MyLink.scss';
 import '../styles/themes/components/link.scss';
+import { useSelector } from 'react-redux';
 
 function MyLink({to, children}) {
+    const {theme} = useSelector(state => state.ui);
     return (
-        <Link className={`${classes.link} link light`} to={to}>
+        <Link className={`link ${theme}`} to={to}>
             <div>{children}</div>
-            <span className={classes.triangle}>&#9660;</span>
+            <span className='triangle'>&#9660;</span>
         </Link>
     )
 }

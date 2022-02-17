@@ -1,11 +1,14 @@
 import React from 'react'
-import classes from './Select.module.css';
+import './Select.scss';
 import '../styles/themes/components/select.scss';
+import { useSelector } from 'react-redux';
 
-function MySelect({name, options, defaultOption, value, onChange}) {
+function Select({name, options, defaultOption, value, onChange}) {
+    const {theme} = useSelector(state => state.ui);
+
     return (
         <select
-            className={`${classes.select} select light`} 
+            className={`select ${theme}`} 
             name={name} 
             value={value} 
             onChange={(e) => onChange(e.target.value)}
@@ -24,4 +27,4 @@ function MySelect({name, options, defaultOption, value, onChange}) {
     )
 }
 
-export default MySelect
+export default Select

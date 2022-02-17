@@ -5,7 +5,6 @@ import { getPostDetailsById } from '../API/PostService';
 import { useFetching } from '../hooks/useFetching';
 import ErrorMessage from '../UI/ErrorMessage';
 import Loader from '../UI/Loader';
-import MyButton from '../UI/MyButton';
 import '../style.css';
 import PostItemDetails from '../UI/PostItemDetails';
 

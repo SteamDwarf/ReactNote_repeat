@@ -1,12 +1,11 @@
 import React from 'react'
-import classes from './ErrorMessage.module.css'
+import './ErrorMessage.scss'
 
 function ErrorMessage({error}) {
-    console.log(error);
     return (
-        <div className={classes.block}>
+        <div className='error-message_block'>
             <h1>Произошла ошибка!</h1>
-            <div className={classes.errorMessage}>{error}</div>
+            <div className='message'>{error}</div>
         </div>
     )
 }

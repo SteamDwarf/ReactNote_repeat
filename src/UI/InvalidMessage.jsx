@@ -1,9 +1,9 @@
 import React from 'react'
-import classes from './InvalidMessage.module.css'
+import './InvalidMessage.scss'
 
 function InvalidMessage({children}) {
     return (
-        <div className={classes.message}>
+        <div className='message'>
             {children}
         </div>
     )

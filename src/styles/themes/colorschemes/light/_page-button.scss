@@ -1,0 +1,11 @@
+@import './vars.scss';
+
+.page-btn.light {
+    border-color: $green;
+    color: $green;
+
+    &.active {
+        background-color: $lightGreen;
+        color: $foreground;
+    }
+}

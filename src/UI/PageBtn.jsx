@@ -1,9 +1,11 @@
 import React from 'react'
-import classes from './PageBtn.module.css';
+import './PageBtn.scss';
+import '../styles/themes/components/page-button.scss';
+import { useSelector } from 'react-redux';
 
 function PageBtn({children, isActive, ...props}) {
-    let className = `${classes.btn} ${isActive ? classes.active : ''}`;
-    
+    const {theme} = useSelector(state => state.ui);
+    let className = `page-btn ${theme} ${isActive ? 'active' : ''}`;
     return (
         <button {...props} className={className}> 
             {children}

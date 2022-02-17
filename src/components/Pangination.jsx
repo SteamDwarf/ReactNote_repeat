@@ -1,8 +1,8 @@
 import React from 'react'
-import MySelect from '../UI/MySelect'
+import Select from '../UI/Select'
 import PageBtn from '../UI/PageBtn'
 import { countPages } from '../utils/pages'
-import classes from './Pangination.module.css'
+import './Pangination.scss'
 
 function Pangination({pages, currentPage, changePage, currentLimit, changeLimit}) {
     const postsLimits = [
@@ -12,7 +12,7 @@ function Pangination({pages, currentPage, changePage, currentLimit, changeLimit}
         {value: '50', text: '50'},
     ]
     return (
-        <div className={classes.container}>
+        <div className={`pangination-container`}>
             <div>
                 {countPages(pages).map((p) => 
                     <PageBtn 
@@ -24,7 +24,7 @@ function Pangination({pages, currentPage, changePage, currentLimit, changeLimit}
                     </PageBtn>
                 )}
             </div>
-            <MySelect 
+            <Select 
                 name={'limit'}
                 options={postsLimits}
                 defaultOption={"Количество постов на странице"}

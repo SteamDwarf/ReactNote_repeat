@@ -1,22 +1,26 @@
 import React from "react";
 import { Link } from "react-router-dom";
-import MyButton from "../UI/MyButton";
-import classes from './PostItem.module.css'
+import Button from "../UI/Button";
+import './PostItem.scss';
+import '../styles/themes/components/post.scss';
+import { useSelector } from "react-redux";
 
 function PostItem({index, post, removePost}) {
+    const {theme} = useSelector(state => state.ui);
+
     return (
-        <div className={classes.post}>
-            <div className={classes.information}>
+        <div className={`post ${theme}`}>
+            <div className={`information`}>
                 <h3>{`${post.title}`}</h3>
                 <div className="description">{post.body}</div>
             </div>
-            <div className={classes.btnsBlock}>
+            <div className={`btns-block`}>
                 <Link to={`/posts/${post.id}`}>
-                    <MyButton color='blue'>Открыть</MyButton>
+                    <Button color='blue'>Открыть</Button>
                 </Link>
                 {
                     removePost
-                    ?<MyButton color='blue' onClick={() => removePost(post.id)}>Удалить</MyButton>
+                    ?<Button color='blue' onClick={() => removePost(post.id)}>Удалить</Button>
                     :null
                 }
                 

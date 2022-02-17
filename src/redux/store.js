@@ -1,14 +1,6 @@
-import { combineReducers, createStore } from "redux";
+import { createStore } from "redux";
 import { composeWithDevTools } from "redux-devtools-extension";
-import { authReducer } from "./AuthReducer";
-import { postReducer } from "./PostReducer";
-import { UIReducer } from "./UIReducer";
-
-const rootReducer = combineReducers({
-    auth: authReducer,
-    posts: postReducer,
-    ui: UIReducer
-});
+import rootReducer from "./reducers/RootReducer.js";
 
 const store = createStore(rootReducer, composeWithDevTools());
 

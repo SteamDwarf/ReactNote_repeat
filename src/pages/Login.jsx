@@ -5,12 +5,12 @@ import { getAllUsers, getUserByFilter, postNewUser } from '../API/UserService';
 import { AuthContext } from '../context/AuthContext'
 import { useFetching } from '../hooks/useFetching';
 import { useFilterUsers, useUsers } from '../hooks/useUsers';
-import { enterPasswordAction, enterUsernameAction, setCurrentUserAction, signInAction } from '../redux/AuthReducer';
-import { setUserDataValidStateAction } from '../redux/UIReducer';
+import { enterPasswordAction, enterUsernameAction, setCurrentUserAction, signInAction } from '../redux/reducers/AuthReducer';
+import { setUserDataValidStateAction } from '../redux/reducers/UIReducer';
 import ErrorMessage from '../UI/ErrorMessage';
 import InvalidMessage from '../UI/InvalidMessage';
-import MyButton from '../UI/MyButton'
-import MyInput from '../UI/MyInput'
+import Button from '../UI/Button'
+import Input from '../UI/Input';
 
 function Login() {
     const dispatch = useDispatch();
@@ -53,19 +53,19 @@ function Login() {
     return (
         <form className='App login-form '>
             <h3 className='title'>Введите логин и пароль пользователя:</h3>
-            <MyInput 
+            <Input 
                 onChange={enterUsername}
                 value={newUser.username} 
                 placeholder='Логин'
             />
-            <MyInput 
+            <Input 
                 onChange={enterPassword}
                 value={newUser.password} 
                 type='password' 
                 placeholder='Пароль'
             />
             <div className='btns-block'>
-                <MyButton color='blue' onClick={signIn}>Войти</MyButton>
+                <Button color='blue' onClick={signIn}>Войти</Button>
             </div>
             {
                 !isValidForm

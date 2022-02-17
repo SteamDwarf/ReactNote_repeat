@@ -1,12 +1,14 @@
 import React from 'react'
-import classes from './Loader.module.css';
+import './Loader.scss';
 import '../styles/themes/components/loader.scss';
+import { useSelector } from 'react-redux';
 
 function Loader({text}) {
+    const {theme} = useSelector(state => state.ui);
     return (
-        <div className={classes.loadingBlock}>
+        <div className='loading-block'>
             <h1 className='title'>{text}</h1>
-            <div className={`${classes.spinner} spinner light`}></div>
+            <div className={`spinner ${theme}`}></div>
         </div>
     )
 }

@@ -1,0 +1,11 @@
+@import './vars.scss';
+
+.page-btn.dark {
+    border-color: $orange;
+    color: $orange;
+
+    &.active {
+        background-color: $lightOrange;
+        color: $foreground;
+    }
+}

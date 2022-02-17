@@ -1,0 +1,12 @@
+@import './vars.scss';
+
+.btn.dark {
+    background-color: $foreground;
+    border-color: $orange;
+    color: $orange;
+
+    &:hover {
+        background-color: $orange;
+        color: $foreground;
+    }
+}

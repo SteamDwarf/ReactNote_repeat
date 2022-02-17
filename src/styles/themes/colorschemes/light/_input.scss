@@ -1,5 +1,7 @@
-@import '../light/vars.scss';
+@import './vars.scss';
 
 .input.light {
     border-color: $blue;
+    background-color: $foreground;
+    color: $mainTextColor;
 }

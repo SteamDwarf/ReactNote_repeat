@@ -51,28 +51,30 @@ function Login() {
     }
 
     return (
-        <form className='App login-form '>
-            <h3 className='title'>Введите логин и пароль пользователя:</h3>
-            <Input 
-                onChange={enterUsername}
-                value={newUser.username} 
-                placeholder='Логин'
-            />
-            <Input 
-                onChange={enterPassword}
-                value={newUser.password} 
-                type='password' 
-                placeholder='Пароль'
-            />
-            <div className='btns-block'>
-                <Button color='blue' onClick={signIn}>Войти</Button>
-            </div>
-            {
-                !isValidForm
-                ?<InvalidMessage>Введите логин и пароль!</InvalidMessage>
-                :null
-            }
-        </form>
+        <div>
+            <form className='login-form'>
+                <h3 className='title'>Введите логин и пароль пользователя:</h3>
+                <Input 
+                    onChange={enterUsername}
+                    value={newUser.username} 
+                    placeholder='Логин'
+                />
+                <Input 
+                    onChange={enterPassword}
+                    value={newUser.password} 
+                    type='password' 
+                    placeholder='Пароль'
+                />
+                <div className='btns-block'>
+                    <Button color='blue' onClick={signIn}>Войти</Button>
+                </div>
+                {
+                    !isValidForm
+                    ?<InvalidMessage>Введите логин и пароль!</InvalidMessage>
+                    :null
+                }
+            </form>
+        </div>
     )
 }
 

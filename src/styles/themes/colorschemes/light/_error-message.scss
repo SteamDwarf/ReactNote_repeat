@@ -1,0 +1,11 @@
+@import './vars.scss';
+
+.error-message_block.light {
+    background-color: $background;
+    color: $mainTextColor;
+
+    & .message {
+        border-color: $red;
+        color: $red;
+    }
+}

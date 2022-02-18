@@ -1,0 +1,9 @@
+@import './vars.scss';
+
+.modal.dark {
+    color: $mainTextColor;
+
+    & .modal_content {
+        background-color: $background;
+    }
+}

@@ -1,5 +1,9 @@
 @import './vars.scss';
 
-.spinner.dark {
-    border-color: $blue;
+.loading-block.dark {
+    background-color: $background;
+
+    & .spinner {
+        border-color: $blue;
+    }
 }

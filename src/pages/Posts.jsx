@@ -4,43 +4,25 @@ import PostVieweController from "../components/PostVieweController";
 import PostList from "../components/PostList";
 import Modal from "../components/Modal";
 import { usePosts } from "../hooks/usePosts";
-import { deletePostById, getAllPosts, postNewPost } from "../API/PostService";
-import { useFetching } from "../hooks/useFetching";
 import Pangination from "../components/Pangination";
 import '../style.css'
-import { useContext } from "react/cjs/react.development";
-import { PostsConfContext } from "../context/PostsConfContext";
 import { useDispatch } from "react-redux";
 import { useSelector } from "react-redux";
-import { setPostsLimitAction, setSearchQuerryAction, setSortOptionAction, turnOverPageAction } from "../redux/reducers/PostReducer";
+import { clearUploadErrorAction, fetchPostsAction, setPostsLimitAction, setSearchQuerryAction, setSortOptionAction, turnOverPageAction, uploadPostAction } from "../redux/reducers/PostReducer";
 import { showHideNewPostModalAction } from "../redux/reducers/UIReducer";
 
 function Posts() {
   const dispatch = useDispatch();
-  const curSortOption = useSelector(state => state.posts.curSortOption);
-  const postsLimit = useSelector(state => state.posts.postsLimit);
-  const page = useSelector(state => state.posts.page);
-  const searchQuerry = useSelector(state => state.posts.searchQuerry); 
+  const {posts, error, isFetching} = useSelector(state => state.posts);
+  const {curSortOption, postsLimit, page, searchQuerry} = useSelector(state => state.posts);
+  const {uploadError, isUploading} = useSelector(state => state.posts);
   const isShownModal = useSelector(state => state.ui.newPostModalShown);
-
-  const [posts, setPosts] = useState([]);
-  const [pagesCount, setPagesCount] = useState(0);
   const searchedAndSortedPosts = usePosts(posts, curSortOption, searchQuerry, postsLimit);
 
-  const [fetchPosts, postsIsLoading, error] = useFetching(async () => {
-    const response = await getAllPosts();
-    setPosts(response.data);
-  });
-  const [uploadPost, postIsUploading, uploadError, setUploadError] = useFetching(async (post) => {
-    const response = await postNewPost(post);
-    setPosts([...posts, post]);
 
-    if(!uploadError) {
-      toggleModal();
-    }
-  });
-
-  useEffect(fetchPosts, []);
+  useEffect(() => {
+    dispatch(fetchPostsAction());
+  }, []);
 
   function changePostsLimit(limit) {
     dispatch(setPostsLimitAction(limit));
@@ -57,8 +39,9 @@ function Posts() {
   }
   function toggleModal() {
     dispatch(showHideNewPostModalAction(!isShownModal));
-    setUploadError('');
+    dispatch(clearUploadErrorAction());
   }
+
 
 
   return (
@@ -68,12 +51,12 @@ function Posts() {
         ?
           <Modal 
             toggleModal={toggleModal}
-            isLoading={postIsUploading}
+            isLoading={isUploading}
             error={uploadError}
             loadingText='Подождите, пост загружается...' 
-            setError={setUploadError}
+            clearError={() => dispatch(clearUploadErrorAction())}
           >
-            <PostForm addPost={uploadPost} />
+            <PostForm addPost={(newPost) => dispatch(uploadPostAction(newPost))} />
           </Modal>
         : null
       }
@@ -95,7 +78,7 @@ function Posts() {
       <PostList 
         title='Посты' 
         posts={searchedAndSortedPosts[page - 1] || []}
-        isLoading={postsIsLoading}
+        isLoading={isFetching}
         error={error}
       />
       <Pangination 

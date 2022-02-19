@@ -11,6 +11,7 @@ import ErrorMessage from '../UI/ErrorMessage';
 import InvalidMessage from '../UI/InvalidMessage';
 import Button from '../UI/Button'
 import Input from '../UI/Input';
+import './Login.scss';
 
 function Login() {
     const dispatch = useDispatch();
@@ -51,7 +52,7 @@ function Login() {
     }
 
     return (
-        <div>
+        <div className='login_block'>
             <form className='login-form'>
                 <h3 className='title'>Введите логин и пароль пользователя:</h3>
                 <Input 

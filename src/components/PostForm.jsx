@@ -14,7 +14,8 @@ function PostForm({addPost}) {
     const [post, setPost] = useState({title: '', body: ''});
 
     function createPost() {
-        addPost({...post, id: Date.now(), userId: currentUser.id});
+        const date = new Date().toLocaleString().slice(0, -3).replace(',', '');
+        addPost({...post, id: Date.now(), userId: currentUser.id, date});
         setPost({title: '', body: ''});
     }
 

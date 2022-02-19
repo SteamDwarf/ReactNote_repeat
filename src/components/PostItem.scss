@@ -1,21 +1,36 @@
 .post {
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
+    
     width: 100%;
     padding: 20px;
     border: 2px solid;
     margin-bottom: 10px;
+
+    &_main-block {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+
+        & .information {
+            width: 85%;
+        }
     
-    & .information {
-        width: 85%;
+        & .btns-block {
+            display: flex;
+            flex-direction: column;
+            justify-content: space-around;
+            height: 120px;
+        }
+    
     }
 
-    & .btns-block {
-        display: flex;
-        flex-direction: column;
-        justify-content: space-around;
-        height: 100px;
+
+    &_additional-block {
+        margin-top: 20px;
+
+        & .date-block {
+            padding-top: 5px;
+            font-size: 14px;
+        }
     }
 }
 

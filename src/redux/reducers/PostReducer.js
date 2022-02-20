@@ -14,20 +14,23 @@ const SET_SORT_OPTION = 'SET_SORT_OPTION';
 const SET_POSTS_LIMIT = 'SET_POSTS_LIMIT';
 const TURN_OVER_PAGE = 'TURN_OVER_PAGE';
 const SET_SEARCH_QUERRY = 'SET_SEARCH_QUERRY';
+
 const FETCHING_POSTS = 'FETCHING_POSTS';
 const FETCH_POSTS_SUCCESS = 'FETCH_POSTS_SUCCESS';
 const FETCH_POSTS_ERRORR = 'FETCH_POSTS_ERRORR';
+
 const UPLOADING_POST = 'UPLOADING_POST';
 const UPLOAD_POST_SUCCESS = 'UPLOAD_POST_SUCCESS';
 const UPLOAD_POST_ERROR = 'UPLOAD_POST_ERROR';
 const CLEAR_UPLOAD_ERROR = 'CLEAR_UPLOAD_ERROR';
 
+
 const fetchingPostsAction = () => ({type: FETCHING_POSTS});
-const fetchPostsSuccessAction = (payload) => ({type: FETCH_POSTS_SUCCESS, payload});
-const fetchPostsErrorAction = (payload) => ({type: FETCH_POSTS_ERRORR, payload});
+const fetchPostsSuccessAction = (posts) => ({type: FETCH_POSTS_SUCCESS, payload: posts});
+const fetchPostsErrorAction = (errorMessage) => ({type: FETCH_POSTS_ERRORR, payload: errorMessage});
 const uploadingPostAction = () => ({type: UPLOADING_POST});
-const uploadPostSuccessAction = (payload) => ({type: UPLOAD_POST_SUCCESS, payload});
-const uploadPostErrorAction = (payload) => ({type: UPLOAD_POST_ERROR, payload});
+const uploadPostSuccessAction = (post) => ({type: UPLOAD_POST_SUCCESS, payload: post});
+const uploadPostErrorAction = (errorMessage) => ({type: UPLOAD_POST_ERROR, payload: errorMessage});
 
 export const setSortOptionAction = (payload) => ({type: SET_SORT_OPTION, payload});
 export const setPostsLimitAction = (payload) => ({type: SET_POSTS_LIMIT, payload});
@@ -87,7 +90,8 @@ export function postReducer(state = defaultState, action) {
             return {...state, uploadError: action.payload, isUploading: false};
         case CLEAR_UPLOAD_ERROR:
             return {...state, uploadError: ''};
-        default: return state;
+        default: 
+            return state;
     }
 }
 

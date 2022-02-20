@@ -5,7 +5,7 @@
       "id": 1,
       "title": "sunt aut facere repellat provident occaecati excepturi optio reprehenderit",
       "body": "quia et suscipit\nsuscipit recusandae consequuntur expedita et cum\nreprehenderit molestiae ut ut quas totam\nnostrum rerum est autem sunt rem eveniet architecto",
-      "date": "19.02.2022 17:27"   
+      "date": "19.02.2022 17:27"
     },
     {
       "userId": 1,
@@ -4103,6 +4103,24 @@
       "name": "ex eaque eum natus",
       "email": "Emma@joanny.ca",
       "body": "perspiciatis quis doloremque\nveniam nisi eos velit sed\nid totam inventore voluptatem laborum et eveniet\naut aut aut maxime quia temporibus ut omnis"
+    },
+    {
+      "postId": "90",
+      "id": 501,
+      "email": "123",
+      "body": "Отличная статья"
+    },
+    {
+      "postId": "90",
+      "id": 502,
+      "email": "123",
+      "body": "Шикардос"
+    },
+    {
+      "postId": "90",
+      "id": 503,
+      "email": "123",
+      "body": "Супер-пупер"
     }
   ],
   "users": [

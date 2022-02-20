@@ -7,29 +7,37 @@ import ErrorMessage from '../UI/ErrorMessage';
 import Loader from '../UI/Loader';
 import '../style.css';
 import PostItemDetails from '../UI/PostItemDetails';
+import { useDispatch, useSelector } from 'react-redux';
+import { fetchBrowsePostInformation } from '../redux/reducers/BrowsePostReducer';
 
 function PostDetails() {
-    const [postDetails, setPostDetails] = useState({});
-    const [postComments, setPostComments] = useState([]);
+    const {browsePost, isFetchingPost, fetchPostError} = useSelector(state => state.postDetails);
+    const {postComments, isFetchingComments, fetchCommentsError} = useSelector(state => state.postDetails);
     const urlParams = useParams();
-    const [fetchPostDetails, isLoading, error] = useFetching(async () => {
-        const [post, comments] = await getPostDetailsById(urlParams.postId);
+    const dispatch = useDispatch();
+    
+    useEffect(() => {
+        dispatch(fetchBrowsePostInformation(urlParams.postId));
+    }, []);
 
-        setPostDetails(post.data);
-        setPostComments(comments.data);
-    });
-
-    useEffect(fetchPostDetails, []);
-
-    if(error) {
-        return <ErrorMessage error={error}/>
+    if(fetchCommentsError | fetchPostError) {
+        return (
+            <>
+                <ErrorMessage error={fetchPostError}/>
+                <ErrorMessage error={fetchCommentsError}/>
+            </>
+        )
     }
-    if(isLoading) {
-        return <Loader text='Информация о посте загружается. Подождите...' />
+    if(isFetchingPost | isFetchingComments) {
+        return (
+            <>
+                <Loader text='Информация о посте загружается. Подождите...' />
+            </>
+        )
     }
     return (
         <div className='App'>
-            <PostItemDetails postDetails={postDetails} postComments={postComments}/>
+            <PostItemDetails postDetails={browsePost} postComments={postComments}/>
         </div>
     )
 }

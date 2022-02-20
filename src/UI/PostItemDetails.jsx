@@ -2,6 +2,7 @@ import React from 'react'
 import './PostItemDetails.scss';
 import '../styles/themes/components/post-item-details.scss';
 import { useSelector } from 'react-redux';
+import CommentForm from '../components/CommentForm';
 
 function PostItemDetails({postDetails, postComments}) {
     const {theme} = useSelector(state => state.ui);
@@ -15,10 +16,18 @@ function PostItemDetails({postDetails, postComments}) {
                 <hr />
                 {postComments.map((comment) =>
                     <div className='comment' key={comment.id}>
-                        <h5>{comment.email}</h5>
+                        <h5 className='comment_email'>{comment.email}</h5>
                         <div>{comment.body}</div>
                     </div>
                 )}
+                {postComments.length > 0
+                    ?
+                        <hr />
+                    :
+                        null
+                }
+
+                <CommentForm />
             </div>
         </div>
     )

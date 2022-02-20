@@ -6,5 +6,9 @@
 
     & .comments_block {
         border-top-color: $blue;
+
+        & .comment_email {
+            color: $green;
+        }
     }
 }

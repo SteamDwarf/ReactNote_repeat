@@ -1,7 +1,7 @@
 const defaultState = {
     newPostModalShown: false,
     isValidUserData: true,
-    theme: 'dark'
+    theme: 'dark',
 }
 
 const SHOW_HIDE_NEW_POST_MODAL = 'SHOW_HIDE_NEW_POST_MODAL';

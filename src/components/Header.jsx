@@ -8,6 +8,7 @@ import { useDispatch } from 'react-redux'
 import { useSelector } from 'react-redux'
 import { setCurrentUserAction, signOutAction } from '../redux/reducers/AuthReducer'
 import { setThemeAction } from '../redux/reducers/UIReducer';
+import ProfileLink from '../UI/ProfileLink'
 
 function Header() {
     const dispatch = useDispatch();
@@ -15,13 +16,15 @@ function Header() {
     const currentUser = useSelector(state => state.auth.currentUser);
     const {theme} = useSelector(state => state.ui);
     const navigate = useNavigate();
-    console.log(isAuth);
 
     function signOut() {
         dispatch(setCurrentUserAction({}));
         navigate('/');
         localStorage.removeItem('userId');
         dispatch(signOutAction());
+    }
+    function signIn() {
+        navigate('/login');
     }
 
     function setTheme() {
@@ -31,29 +34,24 @@ function Header() {
             dispatch(setThemeAction('light'));
         }
     }
-/*     function setLightTheme() {
-        dispatch(setLightThemeAction());
-    }
-    function setDarkTheme() {
-        dispatch(setDarkThemeAction());
-    } */
+    
     return (
-        isAuth
-            ?
-                <div className={`header`}>
-                    <div>
-                        <Link to='/'>
-                            <Button color='green'>Посты</Button>
-                        </Link>
-                    </div>
-                    <div className={`user-block`}>
-                        <MyLink to='/profile'>{currentUser.username}</MyLink>
-                        <Button onClick={setTheme} color='green'>Смена темы</Button>
-                        <Button color='green' onClick={signOut}>Выйти</Button>
-                    </div>
-                </div>
-            :
-                null
+        <div className={`header`}>
+            <div>
+                <Link to='/'>
+                    <Button color='green'>Посты</Button>
+                </Link>
+            </div>
+            <div className={`user-block`}>
+                { isAuth ? <ProfileLink to='/profile'>{currentUser.username}</ProfileLink> : null }
+                <Button onClick={setTheme} color='green'>Смена темы</Button>
+                {isAuth 
+                    ? <Button color='green' onClick={signOut}>Выйти</Button>
+                    : <Button color='green' onClick={signIn}>Войти</Button>
+                }
+                
+            </div>
+        </div>
     )
 }
 

@@ -1,0 +1,16 @@
+.form {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    width: 100%;
+    height: 100%;
+/*     width: 45%;
+    min-width: 600px;
+    min-height: 300px; */
+    margin-top: 50px;
+
+    & .btns-block {
+        display: flex;
+        justify-content: center;
+    }
+}

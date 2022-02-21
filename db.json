@@ -629,13 +629,6 @@
       "body": "123123",
       "id": 1638210982802,
       "userId": 13
-    },
-    {
-      "title": "333",
-      "body": "4444",
-      "id": 1645280845424,
-      "userId": 1645012582605,
-      "date": "19.02.2022 17:27"
     }
   ],
   "comments": [
@@ -4103,24 +4096,6 @@
       "name": "ex eaque eum natus",
       "email": "Emma@joanny.ca",
       "body": "perspiciatis quis doloremque\nveniam nisi eos velit sed\nid totam inventore voluptatem laborum et eveniet\naut aut aut maxime quia temporibus ut omnis"
-    },
-    {
-      "postId": "90",
-      "id": 501,
-      "email": "123",
-      "body": "Отличная статья"
-    },
-    {
-      "postId": "90",
-      "id": 502,
-      "email": "123",
-      "body": "Шикардос"
-    },
-    {
-      "postId": "90",
-      "id": 503,
-      "email": "123",
-      "body": "Супер-пупер"
     }
   ],
   "users": [

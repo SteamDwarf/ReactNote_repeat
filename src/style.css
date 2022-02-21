@@ -13,7 +13,7 @@
     width: 100%;
     text-align: center;
 }
-.login-form {
+/* .login-form {
     display: flex;
     flex-direction: column;
     justify-content: space-between;
@@ -25,7 +25,7 @@
 .login-form .btns-block {
     display: flex;
     justify-content: center;
-}
+} */
 
 .post-enter {
     transform: translateX(-100%);

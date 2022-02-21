@@ -8,8 +8,8 @@ function MyLink({to, children}) {
     const {theme} = useSelector(state => state.ui);
     return (
         <Link className={`link ${theme}`} to={to}>
-            <div>{children}</div>
-            <span className='triangle'>&#9660;</span>
+            <span>{children} </span>
+            {/* <span className='triangle'>&#9660;</span> */}
         </Link>
     )
 }

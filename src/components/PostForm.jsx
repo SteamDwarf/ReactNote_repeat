@@ -20,7 +20,7 @@ function PostForm({addPost}) {
     }
 
     return (
-        <div className={`form ${theme}`}>
+        <div className={`post-form ${theme}`}>
             <Input 
                 value={post.title}
                 onChange={(e) => setPost({...post, title: e.target.value})} 

@@ -1,53 +1,65 @@
 import React, { useEffect, useState } from 'react'
 import { useDispatch, useSelector } from 'react-redux';
+import { useNavigate } from 'react-router-dom';
 import Form from '../components/Form'
-import { findExistingUser } from '../redux/reducers/AuthReducer';
+import { findExistingUser, setPasswordErrorAction, setUsernameErrorAction, setEmailErrorAction, registerNewUser, setAuthErrorAction } from '../redux/reducers/AuthReducer';
 import Input from '../UI/Input'
 import MyLink from '../UI/MyLink';
 import ValidatedInput from '../UI/ValidatedInput';
 import './Registration.scss';
 
 const Registration = () => {
+    const emailReg = /^[\w-\.]+@[\w-]+\.[a-z]{2,4}$/gi;
     const dispatch = useDispatch();
-    const {authError, existingUser} = useSelector(state => state.auth);
+    const navigate = useNavigate();
+    const {authError, registerError} = useSelector(state => state.auth);
     const [newUser, setNewUser] = useState({username: '', email: '', password: ''});
     const [repeatedPassword, setRepeatedPassword] = useState('');
-    const [registerError, setRegisterError] = useState({username: '', email: '', password: ''});
 
     function validateRepeatedPassword() {
         if(newUser.password !== repeatedPassword) {
-           setRegisterError({...registerError, password: 'Пароли не совпадают'})
+           dispatch(setPasswordErrorAction('Пароли не совпадают'));
         } else {
-            setRegisterError({...registerError, password: ''});
+            dispatch(setPasswordErrorAction(''));
         }
     }
     function validateUsername() {
         if(newUser.username.length < 3) {
-            setRegisterError({...registerError, username: 'Имя пользователя слишком короткое'});
+            dispatch(setUsernameErrorAction('Имя пользователя слишком короткое. '));
             return;
         } else {
-            setRegisterError({...registerError, username: ''});
+            dispatch(setUsernameErrorAction(''));
         }
 
         dispatch(findExistingUser('username', newUser.username));
+    }
+    function validateEmail() {
+        if(!emailReg.test(newUser.email)) {
+            dispatch(setEmailErrorAction('Некорректно введена электронная почта. '));
+            return;
+        }else {
+            dispatch(setEmailErrorAction(''));
+        }
 
-        //TODO Проверяет на совпадение пользователя раньше чем его получили
-/* 
-        if(existingUser.length > 0) {
-            setRegisterError({...registerError, username: 'Пользователь с таким логином уже есть'});
-        } else {
-            setRegisterError({...registerError, username: ''});
-        } */
+        dispatch(findExistingUser('email', newUser.email));
     }
 
     function registerUser(e) {
         e.preventDefault();
-        console.log(newUser, repeatedPassword)
-    }
 
-/*     useEffect(() => {
-        dispatch(findExistingUser('username', 'Bret'));
-    }, []); */
+        validateUsername();
+        validateEmail();
+        validateRepeatedPassword();
+
+        if(registerError.username || registerError.email || registerError.password) {
+            dispatch(setAuthErrorAction('Вы ввели некорректные данные.'));
+            return;
+        }
+        
+        dispatch(registerNewUser(newUser));
+        dispatch(setAuthErrorAction(''));
+        navigate('/');
+    }
 
     return (
         <div className='registration_block'>
@@ -64,10 +76,12 @@ const Registration = () => {
                     error={registerError.username}
                     onBlur={validateUsername}
                 />
-                <Input 
+                <ValidatedInput 
                     onChange={(e) => setNewUser({...newUser, email: e.target.value})}
                     value={newUser.email} 
                     placeholder='Электронная почта'
+                    error={registerError.email}
+                    onBlur={validateEmail}
                 />
                 <Input 
                     onChange={(e) => setNewUser({...newUser, password: e.target.value})}
@@ -85,7 +99,7 @@ const Registration = () => {
                 />
                 <div>
                     Зарегистрированы?
-                    <MyLink to='/login'> Атворизоваться</MyLink>
+                    <MyLink to='/login'> Авторизоваться</MyLink>
                 </div>
             </Form>
         </div>

@@ -19,11 +19,13 @@ function PostVieweController({curSortOption, changeSortOption, searchQuerry, cha
                 onChange={changeSortOption}
             />
             <Button color='blue' onClick={toggleModal}>Добавить пост</Button>
-            <Input 
-                placeholder='Поиск'
-                value={searchQuerry}
-                onChange={(e) => changeSearchQuerry(e.target.value)}
-            />
+            <div className='search_block'>
+                <Input 
+                    placeholder='Поиск'
+                    value={searchQuerry}
+                    onChange={(e) => changeSearchQuerry(e.target.value)}
+                />
+            </div>
         </div>
     )
 }

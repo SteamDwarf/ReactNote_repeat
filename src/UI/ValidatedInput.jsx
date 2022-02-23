@@ -6,10 +6,13 @@ const ValidatedInput = ({error, ...props}) => {
   return (
     <div>
         <Input {...props}/>
-        {
-            error
-            ?<InvalidMessage>{error}</InvalidMessage>
-            :null
+        {<InvalidMessage>{error}</InvalidMessage>
+          //TODO перебор массива ошибок error и если одна из них содержит строку, то выводит ее
+           /*  errors.map(error => 
+              error
+              ?<InvalidMessage>{error}</InvalidMessage>
+              :null
+            ) */
         }
     </div>
   )

@@ -1,12 +1,10 @@
 import React, {useState} from 'react'
 import { useSelector } from 'react-redux';
-import { useContext } from 'react/cjs/react.development';
-import { AuthContext } from '../context/AuthContext';
-import Button from '../UI/Button'
-import Input from '../UI/Input'
-import Textarea from '../UI/Textarea';
+import Button from '../../UI/Button'
+import Input from '../../UI/Input'
+import Textarea from '../../UI/Textarea';
 import './PostForm.scss'
-import '../styles/themes/components/form.scss';
+import '../../styles/themes/components/form.scss';
 
 function PostForm({addPost}) {
     const currentUser = useSelector(state => state.auth.currentUser);

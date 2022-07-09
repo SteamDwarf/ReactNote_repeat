@@ -1,12 +1,11 @@
-import React, { useContext } from 'react'
+import React from 'react'
 import { useSelector } from 'react-redux';
-import { Routes, Route, Navigate, useRoutes } from 'react-router';
-import { AuthContext } from '../context/AuthContext';
-import Login from '../pages/Login';
-import PostDetails from '../pages/PostDetails';
-import Posts from '../pages/Posts';
-import Profile from '../pages/Profile';
-import Registration from '../pages/Registration';
+import { useRoutes } from 'react-router';
+import Login from '../Login/Login';
+import PostDetails from '../post-details/PostDetails';
+import Posts from '../posts/Posts';
+import Profile from '../profile/Profile';
+import Registration from '../registration/Registration';
 
 function AppRoute() {
     const isAuth = useSelector(state => state.auth.isAuth);

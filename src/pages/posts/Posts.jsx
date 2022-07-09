@@ -1,15 +1,15 @@
-import { useEffect, useState } from "react";
-import PostForm from "../components/PostForm";
-import PostVieweController from "../components/PostVieweController";
-import PostList from "../components/PostList";
-import Modal from "../components/Modal";
-import { usePosts } from "../hooks/usePosts";
-import Pangination from "../components/Pangination";
-import '../style.css'
+import { useEffect} from "react";
+import PostForm from "../../components/post-form/PostForm";
+import PostVieweController from "../../components/post-viewe-control/PostVieweController";
+import PostList from "../../components/post-list/PostList";
+import Modal from "../../components/modal/Modal";
+import { usePosts } from "../../hooks/usePosts";
+import Pangination from "../../components/pangination/Pangination";
+import '../../style.css'
 import { useDispatch } from "react-redux";
 import { useSelector } from "react-redux";
-import { clearUploadErrorAction, fetchPostsAction, setPostsLimitAction, setSearchQuerryAction, setSortOptionAction, turnOverPageAction, uploadPostAction } from "../redux/reducers/PostReducer";
-import { showHideNewPostModalAction } from "../redux/reducers/UIReducer";
+import { clearUploadErrorAction, fetchPostsAction, setPostsLimitAction, setSearchQuerryAction, setSortOptionAction, turnOverPageAction, uploadPostAction } from "../../redux/reducers/PostReducer";
+import { showHideNewPostModalAction } from "../../redux/reducers/UIReducer";
 
 function Posts() {
   const dispatch = useDispatch();

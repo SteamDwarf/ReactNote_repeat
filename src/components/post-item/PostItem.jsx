@@ -1,8 +1,8 @@
 import React from "react";
 import { Link } from "react-router-dom";
-import Button from "../UI/Button";
+import Button from "../../UI/Button";
 import './PostItem.scss';
-import '../styles/themes/components/post.scss';
+import '../../styles/themes/components/post.scss';
 import { useSelector } from "react-redux";
 
 function PostItem({index, post, removePost}) {

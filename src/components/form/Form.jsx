@@ -1,7 +1,7 @@
 import React from 'react'
 import './Form.scss';
-import Button from '../UI/Button';
-import InvalidMessage from '../UI/InvalidMessage';
+import Button from '../../UI/Button';
+import InvalidMessage from '../../UI/InvalidMessage';
 
 const Form = ({title, submit, btnName, error, children}) => {
   return (

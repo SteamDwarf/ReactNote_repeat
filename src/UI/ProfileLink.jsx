@@ -3,9 +3,8 @@ import MyLink from './MyLink'
 
 const ProfileLink = ({to, children}) => {
   return (
-    <div>
+    <div className='profile-links'>
         <MyLink to={to}>{children}</MyLink>
-        <span className='triangle'>&#9660;</span>
     </div>
   )
 }

@@ -1,13 +1,8 @@
 import React, { useEffect, useState } from 'react'
-import { useParams } from 'react-router'
-import { useContext } from 'react/cjs/react.development'
-import { getUserPosts } from '../API/PostService';
-import { AuthContext } from '../context/AuthContext'
-import { useFetching } from '../hooks/useFetching';
-import PostList from '../components/PostList';
-import { deletePostById } from '../API/PostService';
-import { usePosts } from '../hooks/usePosts';
-import { PostsConfContext } from '../context/PostsConfContext';
+import { getUserPosts, deletePostById } from '../../API/PostService';
+import { useFetching } from '../../hooks/useFetching';
+import PostList from '../../components/post-list/PostList';
+import { usePosts } from '../../hooks/usePosts';
 import { useSelector } from 'react-redux';
 
 function Profile() {

@@ -1,7 +1,7 @@
 import React from 'react'
-import Select from '../UI/Select'
-import PageBtn from '../UI/PageBtn'
-import { countPages } from '../utils/pages'
+import Select from '../../UI/Select'
+import PageBtn from '../../UI/PageBtn'
+import { countPages } from '../../utils/pages'
 import './Pangination.scss'
 
 function Pangination({pages, currentPage, changePage, currentLimit, changeLimit}) {

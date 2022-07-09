@@ -1,14 +1,11 @@
-import React, {useEffect, useState} from 'react'
+import React, {useEffect} from 'react'
 import { useParams } from 'react-router'
-import { Link } from 'react-router-dom';
-import { getPostDetailsById } from '../API/PostService';
-import { useFetching } from '../hooks/useFetching';
-import ErrorMessage from '../UI/ErrorMessage';
-import Loader from '../UI/Loader';
-import '../style.css';
-import PostItemDetails from '../UI/PostItemDetails';
+import ErrorMessage from '../../UI/ErrorMessage';
+import Loader from '../../UI/Loader';
+import '../../style.css'
+import PostItemDetails from '../../UI/PostItemDetails';
 import { useDispatch, useSelector } from 'react-redux';
-import { fetchBrowsePostInformation } from '../redux/reducers/BrowsePostReducer';
+import { fetchBrowsePostInformation } from '../../redux/reducers/BrowsePostReducer';
 
 function PostDetails() {
     const {browsePost, isFetchingPost, fetchPostError} = useSelector(state => state.postDetails);

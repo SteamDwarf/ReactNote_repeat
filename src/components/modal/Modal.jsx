@@ -1,9 +1,9 @@
-import React, { useEffect, useRef, useState } from 'react'
-import ErrorMessage from '../UI/ErrorMessage';
-import Loader from '../UI/Loader';
-import Button from '../UI/Button';
+import React from 'react'
+import ErrorMessage from '../../UI/ErrorMessage';
+import Loader from '../../UI/Loader';
+import Button from '../../UI/Button';
 import './Modal.scss';
-import '../styles/themes/components/modal.scss';
+import '../../styles/themes/components/modal.scss';
 import { useSelector } from 'react-redux';
 
 function Modal({children, toggleModal, isLoading, error, clearError,loadingText}) {

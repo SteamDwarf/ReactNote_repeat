@@ -6,7 +6,6 @@ const defaultState = {
     authError: '',
     registerError: {username: '', email: '', password: ''}
 }
-//TODO isUsernameExist и isEmailExist переделать в строковые переменные
 
 const SIGN_IN = 'SIGN_IN';
 const SIGNING_IN = 'SIGNING_IN';

@@ -1,10 +1,9 @@
 import React from "react";
 import { CSSTransition, TransitionGroup } from "react-transition-group";
-import Loader from "../UI/Loader";
-import PostItem from "./PostItem";
+import Loader from "../../UI/Loader";
+import PostItem from "../post-item/PostItem";
 import './PostList.scss';
-import ErrorMessage from "../UI/ErrorMessage";
-import PostVieweController from "./PostVieweController";
+import ErrorMessage from "../../UI/ErrorMessage";
 
 function PostList({title, posts, removePost, isLoading, error}) {
     if(error) {

@@ -1,7 +1,7 @@
 import React, {useState} from 'react'
-import Button from '../UI/Button';
-import Input from '../UI/Input';
-import Select from '../UI/Select';
+import Button from '../../UI/Button';
+import Input from '../../UI/Input';
+import Select from '../../UI/Select';
 import './PostVieweController.scss';
 
 function PostVieweController({curSortOption, changeSortOption, searchQuerry, changeSearchQuerry, toggleModal}) {

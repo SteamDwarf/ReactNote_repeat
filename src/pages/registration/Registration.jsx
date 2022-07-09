@@ -1,11 +1,11 @@
-import React, { useEffect, useState } from 'react'
+import React, { useState } from 'react'
 import { useDispatch, useSelector } from 'react-redux';
 import { useNavigate } from 'react-router-dom';
-import Form from '../components/Form'
-import { findExistingUser, setPasswordErrorAction, setUsernameErrorAction, setEmailErrorAction, registerNewUser, setAuthErrorAction } from '../redux/reducers/AuthReducer';
-import Input from '../UI/Input'
-import MyLink from '../UI/MyLink';
-import ValidatedInput from '../UI/ValidatedInput';
+import Form from '../../components/form/Form'
+import { findExistingUser, setPasswordErrorAction, setUsernameErrorAction, setEmailErrorAction, registerNewUser, setAuthErrorAction } from '../../redux/reducers/AuthReducer';
+import Input from '../../UI/Input'
+import MyLink from '../../UI/MyLink';
+import ValidatedInput from '../../UI/ValidatedInput';
 import './Registration.scss';
 
 const Registration = () => {

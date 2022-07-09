@@ -2,7 +2,7 @@ import React from 'react'
 import './PostItemDetails.scss';
 import '../styles/themes/components/post-item-details.scss';
 import { useSelector } from 'react-redux';
-import CommentForm from '../components/CommentForm';
+import CommentForm from '../components/comment-form/CommentForm';
 
 function PostItemDetails({postDetails, postComments}) {
     const {theme} = useSelector(state => state.ui);

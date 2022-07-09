@@ -1,20 +1,14 @@
-import React, { useContext, useEffect, useState } from 'react'
+import React from 'react'
 import { useSelector } from 'react-redux';
 import { useDispatch } from 'react-redux';
-import { getAllUsers, getUserByFilter, postNewUser } from '../API/UserService';
-import { AuthContext } from '../context/AuthContext'
-import { useFetching } from '../hooks/useFetching';
-import { useFilterUsers, useUsers } from '../hooks/useUsers';
-import { enterPasswordAction, enterUsernameAction, setAuthErrorAction, setCurrentUserAction, signInAction } from '../redux/reducers/AuthReducer';
-import { setUserDataValidStateAction } from '../redux/reducers/UIReducer';
-import ErrorMessage from '../UI/ErrorMessage';
-import InvalidMessage from '../UI/InvalidMessage';
-import Button from '../UI/Button'
-import Input from '../UI/Input';
+import { getUserByFilter, postNewUser } from '../../API/UserService';
+import { useFetching } from '../../hooks/useFetching';
+import { enterPasswordAction, enterUsernameAction, setAuthErrorAction, setCurrentUserAction, signInAction } from '../../redux/reducers/AuthReducer';
+import Input from '../../UI/Input';
 import './Login.scss';
-import MyLink from '../UI/MyLink';
-import { Link, useNavigate } from 'react-router-dom';
-import Form from '../components/Form';
+import MyLink from '../../UI/MyLink';
+import { useNavigate } from 'react-router-dom';
+import Form from '../../components/form/Form';
 
 function Login() {
     const dispatch = useDispatch();

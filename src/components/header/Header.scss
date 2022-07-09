@@ -1,0 +1,17 @@
+.header {
+    display: flex;
+    justify-content: space-between;
+
+    & .user-block {
+        display: flex;
+        align-items: center;
+
+        & .profile-links {
+            margin-right: 10px;
+        }
+
+        & .btn:first-of-type {
+            margin-right: 10px;
+        }
+    }
+}

@@ -1,9 +1,9 @@
 import React, { useState } from 'react'
-import Textarea from '../UI/Textarea';
-import Button from '../UI/Button';
+import Textarea from '../../UI/Textarea';
+import Button from '../../UI/Button';
 import './CommentForm.scss';
 import { useDispatch, useSelector } from 'react-redux';
-import { uploadComment } from '../redux/reducers/BrowsePostReducer';
+import { uploadComment } from '../../redux/reducers/BrowsePostReducer';
 import { useParams } from 'react-router-dom';
 
 const CommentForm = () => {

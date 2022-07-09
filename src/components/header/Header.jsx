@@ -1,14 +1,12 @@
 import React, {useContext} from 'react'
 import { Link, useNavigate } from 'react-router-dom'
-import Button from '../UI/Button'
+import Button from '../../UI/Button'
 import './Header.scss'
-import { AuthContext } from '../context/AuthContext'
-import MyLink from '../UI/MyLink'
 import { useDispatch } from 'react-redux'
 import { useSelector } from 'react-redux'
-import { setCurrentUserAction, signOutAction } from '../redux/reducers/AuthReducer'
-import { setThemeAction } from '../redux/reducers/UIReducer';
-import ProfileLink from '../UI/ProfileLink'
+import { setCurrentUserAction, signOutAction } from '../../redux/reducers/AuthReducer'
+import { setThemeAction } from '../../redux/reducers/UIReducer';
+import ProfileLink from '../../UI/ProfileLink'
 
 function Header() {
     const dispatch = useDispatch();
@@ -36,13 +34,13 @@ function Header() {
     }
     
     return (
-        <div className={`header`}>
+        <div className='header'>
             <div>
                 <Link to='/'>
                     <Button color='green'>Посты</Button>
                 </Link>
             </div>
-            <div className={`user-block`}>
+            <div className='user-block'>
                 { isAuth ? <ProfileLink to='/profile'>{currentUser.username}</ProfileLink> : null }
                 <Button onClick={setTheme} color='green'>Смена темы</Button>
                 {isAuth 
